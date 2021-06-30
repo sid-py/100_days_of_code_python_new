@@ -1,5 +1,12 @@
 # 🚨 Don't change the code below 👇
-height = float(input("enter your height in m: "))
+
+message = input("Do you know your height in meters?:\n")
+
+if message.upper() == "Y" or message.upper() == "YES":
+    height = float(input("Enter your height in meters: \n"))
+else:
+    height_ft = float(input("Enter your height in ft.inches: \n"))
+    height = height_ft * 0.3048
 weight = float(input("enter your weight in kg: "))
 # 🚨 Don't change the code above 👆
 
