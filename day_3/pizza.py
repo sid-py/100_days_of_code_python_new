@@ -71,6 +71,3 @@ print(f"Your final bill is: ${bill}")
 #             print(f"Your final bill is: ${amt}") # Large Pizza Without Cheese
 #     else:
 #         print(f"Your final bill is: ${amt}") # Large Pizza Without Pepperoni
-
-
-
