@@ -24,24 +24,30 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 print("Welcome to Treasure Island.")
 print("Your mission is to find the treasure.") 
 
-cross_road = input("You are at a crossroad. Which turn would you take? (Left/Right/Straight) :\n ")
+cross_road = input("You are at a crossroad. Which turn would you take? (Left/Right/Straight) :\n ").lower()
 
 lake = ""
 cave = ""
 
-if cross_road.upper() == random.choice("LRS"):
-    lake = input(" You reached a lake. Would you like to take a Boat or Swim?:\n")
-else:
-    print("GAME OVER!!!")
+if cross_road == random.choice("lrs"):
+    lake = input(" You reached a lake. Would you like to take a Boat or Swim?:\n").lower()
 
-if lake.upper() == random.choice("BS"):
-    cave = input("You reached a cave with 3 doors. Which door do you choose (1/2/3)?: \n")
-else:
-    print("GAME OVER!!!")
+    if lake == random.choice("bs"):
+        cave = input("You reached a cave with 3 doors. Which door do you choose (1/2/3)?: \n")
 
-if cave.upper() == random.choice("123"):
-    print("Congratulations! You Won!!")  
+        if cave == "1":
+            print("Its a room full of fire. Game Over!!")
+
+        elif cave == "2":
+            print("Congratulations! You found the treasure!")
+        elif cave == "3":
+            print("Its a room full of snakes. Game Over!!")
+        else:
+            print("You chose a door that doesnt exist! Game Over!!")  
+
+    else:
+        print("You got attacked by Pirannhas! Game Over!!")
 else:
-    print("GAME OVER!!!")
+        print("You fell into a hole! Game Over!!")        
 
 
