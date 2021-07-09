@@ -65,6 +65,18 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 def deal_card(n):
     return random.choices(cards, k=n)
 
+black_jack = True
+def calculate_score(list_cards):
+    if 11 in list_cards and sum(list_cards) == 21:
+        return 0
+    if 11 in list_cards and sum(list_cards) > 21:
+        list_cards.remove
+        
+    return sum(list_cards)
+        
+    
+    
+
 user_cards = deal_card(2)
 computer_cards = deal_card(2)
 
