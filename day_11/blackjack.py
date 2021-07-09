@@ -60,25 +60,74 @@
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
 import random
+from art import logo
+import os
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-def deal_card(n):
-    return random.choices(cards, k=n)
-
-black_jack = True
-def calculate_score(list_cards):
-    if 11 in list_cards and sum(list_cards) == 21:
+print(logo)
+def deal_card():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    card = random.choice(cards)
+    return card
+def calculate_score(cards):
+    if sum(cards) == 21 and len(cards) ==2:
         return 0
-    if 11 in list_cards and sum(list_cards) > 21:
-        list_cards.remove
-        
-    return sum(list_cards)
-        
-    
-    
+    if 11 in cards and sum(cards) > 21:
+        cards.remove(11)
+        cards.append(1)
+    return sum(cards)
 
-user_cards = deal_card(2)
-computer_cards = deal_card(2)
+def compare(user_score, computer_score):
+    if user_score == computer_score:
+        return "Draw"
+    elif computer_score == 0:
+        return "LOse, opponent has Blackjack!"
+    elif user_score == 0:
+        return "Win with a Blackjack!"
+    elif user_score > 21:
+        return "You went over. You lose!"
+    elif computer_score > 21:
+        return "Opponent went over. You win!"
+    elif user_score > computer_score:
+        return "You win!"
+    else:
+        return "You lose!"
 
-print(user_cards)
-print(computer_cards)
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
+
+def play_game():
+    user_cards = []
+    computer_cards =[]
+    is_game_over = False
+    for _ in range(2):
+        user_cards.append(deal_card())
+        computer_cards.append(deal_card())
+
+    while not is_game_over: 
+        user_score = calculate_score(user_cards)
+        computer_score = calculate_score(computer_cards)
+        print(f" Your cards : {user_cards}, current score: {user_score}")
+        print(f" Computer's first card: {computer_cards[0]}")
+
+
+        if user_score == 0 or computer_score == 0 or user_score >21:
+            is_game_over = True
+        else:
+            user_should_deal = input("Type y to get another card and n to pass: ")
+            if user_should_deal == "y":
+                user_cards.append(deal_card())
+            else:
+                is_game_over = True
+
+
+    while computer_score != 0 and computer_score < 17:
+        computer_cards.append(deal_card())
+        computer_sore = calculate_score(computer_cards)
+
+    print(compare(user_score, computer_score))
+
+while input("Do you wan to play the game of Blackjack? : ") == "y":
+    cls()
+    play_game()
+    
