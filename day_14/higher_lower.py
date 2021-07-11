@@ -1,7 +1,10 @@
 # Import all the required modules
 from game_data import data
+import random
+from art import logo, vs
 
 # print the Logo and welcoming message
+print(logo)
 
 # Print compare A sentence
 #  Parse the list randomly for the dictionary entries and construct the sentence
