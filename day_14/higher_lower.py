@@ -5,33 +5,46 @@ from art import logo, vs
 
 # print the Logo and welcoming message
 print(logo)
-position_A = random.randint(1,len(data)) # Defining random position A for the list index
 should_continue = True # A temporary variable for While loop
-
 score = 0 # Variable to track the score
 
+def format_account(account):
+    acc_name = account["name"]
+    acc_desc = account["description"]
+    acc_country = account["country"]
+    acc_follower = account["follower_count"]
+    return f"{acc_name}, a {acc_desc}, from {acc_country}"    
+
+
+def check_answer(guess,follower_a, follower_b):
+    if follower_a > follower_b:
+        return guess == "A"
+    else:
+        return guess == "B"
+    
+account_b = random.choice(data)
+score = 0    
+
 while should_continue: # While loop
-    position_B = random.randint(1,len(data)) # Defining random position B for the list index
-    print(f"""Compare A: {data[position_A]["name"]}, a {data[position_A]["description"]}, from {data[position_A]["country"]}""") # Printing the statements
+    account_a = account_b
+    account_b = random.choice(data)
+    print(f"Compare A: {format_account(account_a)}") # Printing the statements
     print(vs) # Printing the VS logo
-    print(f"""Compare B: {data[position_B]["name"]}, a {data[position_B]["description"]}, from {data[position_B]["country"]}""")# Printing the statements
+    print(f"Compare B: {format_account(account_b)}")# Printing the statements
+    a_follower_count = account_a["follower_count"]
+    b_follower_count = account_b["follower_count"]
     guess = input("Who has more followers? Type 'A' or 'B': ").upper() # Prompt for the user input
+    is_correct = check_answer(guess, a_follower_count,b_follower_count)
+    while account_a == account_b:
+        account_b = random.choice(data)
+
     # Checking the condition
-    if guess == "A": # Checking if A is greater than B. If yes, messages are printied and positions are updated
-        if data[position_A]["follower_count"] > data[position_B]["follower_count"]: 
-            score += 1
-            print(f"You are right! Current score: {score}")
-            position_A = position_A
-        else:
-            print(f"Sorry, that's wrong! Your score is {score}.")
-            should_continue = False
-    elif guess == "B": # Checking if B is greater than A. If yes, messages are printied and positions are updated   
-        if data[position_A]["follower_count"] < data[position_B]["follower_count"]:
-            score += 1
-            print(f"You are right! Current score: {score}")
-            position_A = position_B
-        else:
-            print(f"Sorry, that's wrong! Your score is {score}.")
-            should_continue = False
-            
+    if is_correct:
+        score += 1
+        print(f"You are right! Current score: {score}")
+        
+               
+    else:
+        print(f"Sorry, that's wrong! Your final score is {score}.")
+        should_continue = False    
 # Program successfully built in the first attempt!
