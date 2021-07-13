@@ -72,9 +72,8 @@ def refill_resources():
     resources["coffee"] = 100
         
 profit = 0
-
-
 is_on = True
+
 while is_on:
     choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if choice == "off":
