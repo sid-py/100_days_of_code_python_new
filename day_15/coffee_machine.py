@@ -33,9 +33,11 @@ resources = {
 
 run_coffee_machine = True
 total_balance = 0
-paid_amt = 0 
-   
+paid_amt = 0
+
 # TODO 5: Process coins
+
+
 def pay_money():
     print("Please insert coins:")
     quarters = int(input("how many quarters?")) * 0.25
@@ -44,16 +46,18 @@ def pay_money():
     pennies = int(input("how many pennies?")) * 0.01
     total_payment = quarters + dimes + nickels + pennies
     return total_payment
-  
+
+
 def deliver_coffee(coffee_type):
     global total_balance, paid_amt
     if coffee_type == "espresso":
-        if MENU[coffee_type]["ingredients"]["water"]  <= resources["water"]:
-            if MENU[coffee_type]["ingredients"]["coffee"]  <= resources["coffee"]:
+        if MENU[coffee_type]["ingredients"]["water"] <= resources["water"]:
+            if MENU[coffee_type]["ingredients"]["coffee"] <= resources["coffee"]:
                 paid_amt = pay_money()
                 # TODO 6: Check transaction successful?
                 if paid_amt >= MENU[coffee_type]["cost"]:
-                    print(f"""Here is ${paid_amt - MENU[coffee_type]["cost"]} in change.""")
+                    print(
+                        f"""Here is ${paid_amt - MENU[coffee_type]["cost"]} in change.""")
                     # TODO 7: Make COffee
                     print(f"Here is your {coffee_type}.")
                     resources["water"] -= MENU[coffee_type]["ingredients"]["water"]
@@ -64,15 +68,16 @@ def deliver_coffee(coffee_type):
         else:
             print("Sorry, Coffee unavailable!")
             run_coffee_machine = False
-                   
+
     elif coffee_type == "latte" or coffee_type == "cappuccino":
         if MENU[coffee_type]["ingredients"]["milk"] <= resources["milk"]:
-            if MENU[coffee_type]["ingredients"]["water"]  <= resources["water"]:
-                if MENU[coffee_type]["ingredients"]["coffee"]  <= resources["coffee"]:
+            if MENU[coffee_type]["ingredients"]["water"] <= resources["water"]:
+                if MENU[coffee_type]["ingredients"]["coffee"] <= resources["coffee"]:
                     paid_amt = pay_money()
                     # TODO 6: Check transaction successful?
                     if paid_amt >= MENU[coffee_type]["cost"]:
-                        print(f"""Here is ${paid_amt - MENU[coffee_type]["cost"]} in change.""")
+                        print(
+                            f"""Here is ${paid_amt - MENU[coffee_type]["cost"]} in change.""")
                         # TODO 7: Make COffee
                         print(f"Here is your {coffee_type}.")
                         resources["water"] -= MENU[coffee_type]["ingredients"]["water"]
@@ -86,38 +91,27 @@ def deliver_coffee(coffee_type):
                 run_coffee_machine = False
     # TODO 3: Print Report
     elif coffee_type == "report":
-        for k,v in resources.items():
-            print(k,v) 
-        print("Money: $",total_balance)
+        for k, v in resources.items():
+            print(k, v)
+        print("Money: $", total_balance)
+
 
 def refill_resources():
     resources["water"] = 300
     resources["milk"] = 200
     resources["coffee"] = 100
-        
+
+
 # TODO #2 1: Prompt user by asking “What would you like? (espresso/latte/cappuccino):”
 while run_coffee_machine:
-    user_command = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    user_command = input(
+        "What would you like? (espresso/latte/cappuccino): ").lower()
     # TODO 2: Turn off the Coffee Machine by entering “off” to the prompt
     if user_command == "off":
         run_coffee_machine = False
-        
+
     # TODO 4: Check resources sufficient?
     deliver_coffee(user_command)
-    
+
     if user_command == "refill":
         refill_resources()
-
-
-
-
-            
-
-        
-        
-        
-
-        
-            
-            
-    
