@@ -17,5 +17,6 @@ for i in range(9):
         timmy.forward(100)
         timmy.right(draw_figure(n))
 
+
 screen = Screen()
 screen.exitonclick()
