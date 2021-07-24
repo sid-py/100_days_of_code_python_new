@@ -3,6 +3,7 @@ from ball import Ball
 from turtle import Turtle, Screen
 import time
 from paddle import Paddle
+from scoreboard import Scoreboard
 
 screen = Screen()
 screen.bgcolor("black")
@@ -20,9 +21,12 @@ screen.onkey(r_paddle.go_down, "Down")
 screen.onkey(l_paddle.go_up, "a")
 screen.onkey(l_paddle.go_down, "z")
 
+score = Scoreboard()
+ball_speed = 1
+
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
     
@@ -37,10 +41,17 @@ while game_is_on:
     # Detect when right paddle misses
     if ball.xcor() > 380:
         ball.reset_position()
+        score.l_point()
         
+        
+    # Detect when left paddle misses
     if ball.xcor() < -380:
         ball.reset_position()
+        score.r_point()
         
+
+
+    
         
     
 
