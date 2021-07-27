@@ -12,17 +12,21 @@ class Player(Turtle):
         self.penup()
         self.shape("turtle")
         self.setheading(90)
-        self.goto(STARTING_POSITION)
+        self.go_to_start()
         
         
     def move_player(self):
-        new_y = self.ycor() + MOVE_DISTANCE
-        self.goto(self.xcor(), new_y)
+        self.forward(MOVE_DISTANCE)
         
-    def finish(self):
-        if self.move_player.ycor() == FINISH_LINE_Y:
-            self.LEVEL_NUM += 1
-            self.goto(STARTING_POSITION)
+    def go_to_start(self):
+        self.goto(STARTING_POSITION)
+        
+    def is_at_finish_line(self):
+        if self.ycor() > FINISH_LINE_Y:
+            return True
+        else:
+            return False
+
         
 
     def game_over(self):
@@ -30,7 +34,5 @@ class Player(Turtle):
         self.write("GAME OVER", align = "center", font = "courtier")
         
     
-    def level(self):
-        self.goto(-280 , 280)
-        self.write(f"Level: {LEVEL_NUM}")
+
         

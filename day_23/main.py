@@ -17,11 +17,21 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
-    cars.move()
     
-    if player.distance(cars) < 50:
-        game_is_on = False
-        player.game_over()
+    cars.create_car()
+    cars.move_car()
+    
+    # Detect collision with the car
+    for car in cars.all_cars:
+        if car.distance(player) < 20:
+            game_is_on = False
+            player.game_over()
+    
+    # Detect successful crossing
+    if player.is_at_finish_line():
+        player.go_to_start()
+        cars.level_up()
+        scoreboard.increase_level()
     
  
     
