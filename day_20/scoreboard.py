@@ -21,10 +21,10 @@ class Scoreboard(Turtle):
         self.write(f"Score = {self.score} High Score: {self.highscore}", align = ALIGNMENT, font = FONT) 
     
     def reset(self):
-        with open(r"C:\Users\2kjph5\OneDrive - Merit Automotive Electronics Systems, S.L\03-Miscellaneous\Studies\Learning\python\100_days_of_code_python_new\day_20\data.txt",mode= "r+") as data:
-            if self.score > self.highscore:
-                data.write(self.score)
-        self.clear()    
+        if self.score > self.highscore:
+            self.highscore = self.score
+            with open(r"C:\Users\2kjph5\OneDrive - Merit Automotive Electronics Systems, S.L\03-Miscellaneous\Studies\Learning\python\100_days_of_code_python_new\day_20\data.txt",mode= "r+") as data:
+                data.write(f"{self.score}")
         self.score = 0
         self.update_scoreboard()
         
