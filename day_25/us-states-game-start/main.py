@@ -31,9 +31,7 @@ while len(guessed_state) < 50:
     print(answer_state)
 
     if answer_state == "Exit":
-        for state in all_states:
-            if state not in guessed_state:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guessed_state]
         new_data = pd.DataFrame(missing_states)
         new_data.to_csv(r"day_25\us-states-game-start\states_to_learn.csv")        
         print(missing_states)

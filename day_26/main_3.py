@@ -8,7 +8,6 @@ with open(r"C:\Users\2kjph5\OneDrive - Merit Automotive Electronics Systems, S.L
 
 result = [int(n) for n in file_1_data if n in file_2_data]
 
-
 # Write your code above 👆
 
 print(result)
