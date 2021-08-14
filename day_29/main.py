@@ -1,7 +1,39 @@
 import tkinter as tk
+from tkinter import messagebox
+import random
+import pyperclip
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+
+#Password Generator Project
+def generate_password():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+
+
+    password_letters = [random.choice(letters) for _ in range(random.randint(8,10))]
+    password_symbols = [random.choice(symbols) for _ in range(random.randint(8,10))]
+    password_numbers = [random.choice(numbers) for _ in range(random.randint(8,10))]
+
+    password_list = password_letters + password_numbers + password_symbols
+    # print(password_list)
+    random.shuffle(password_list)
+    # print(password_list)
+
+    password = "".join(password_list)
+    password_entry.insert(0 , password)
+    
+    pyperclip.copy(password)
+    
+    
+
+
+
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
@@ -10,8 +42,17 @@ def save_data():
     email = email_entry.get()
     password = password_entry.get()
     
-    with open(r"day_29\data.txt", "a") as data_file:
-        data_file.write(f"{website} | {email} | {password} \n")
+    if len(website) == 0 or len(password) == 0:
+        messagebox.showinfo(title="Oops", message="Please make sure you haven'e left any field empty!")
+    
+    is_ok = messagebox.askokcancel(title = website, message=f"These are the details entered\n Email: {email}\nPassword:{password}\nIs it OK?")
+    
+    if is_ok:
+        with open(r"day_29\data.txt", "a") as data_file:
+            data_file.write(f"{website} | {email} | {password} \n")
+            web_entry.delete(0, tk.END)
+            email_entry.delete(0, tk.END)
+            password_entry.delete(0, tk.END)
     
 
 
@@ -41,7 +82,7 @@ password.grid(column= 0, row = 3)
 #Entries
 web_entry = tk.Entry(width=35, fg="grey")
 #Add some text to begin with
-web_entry.insert(0, string="Enter the name of the website" )
+web_entry.insert(0, string="" )
 #Gets text in web_entry
 print(web_entry.get())
 web_entry.grid(column=1, row=1, columnspan=2)
@@ -49,26 +90,25 @@ web_entry.focus()
 
 email_entry = tk.Entry(width=35, fg = "grey")
 #Add some text to begin with
-email_entry.insert(0, string="Enter the username/Email")
+email_entry.insert(0, string="")
 #Gets text in email_entry
 print(email_entry.get())
 email_entry.grid(column=1, row=2, columnspan=2)
 
 password_entry = tk.Entry(width=21, fg = "grey")
 #Add some text to begin with
-password_entry.insert(0, string="Enter the password")
+password_entry.insert(0, string="")
 #Gets text in password_entry
 print(password_entry.get())
 password_entry.grid(column=1, row=3)
 
 
-#Buttons
-def action1():
-    print("Do something")
 
 #calls action() when pressed
-password_button = tk.Button(text="Generate Password", command=action1)
+password_button = tk.Button(text="Generate Password", command = generate_password)
 password_button.grid(column=2, row=3)
+
+
 
 
 #calls action() when pressed
