@@ -53,10 +53,24 @@ def save_data():
         messagebox.showinfo(title="Oops", message="Please make sure you haven'e left any field empty!")
     
     else:
-        with open(r"day_29\data.json", "w") as data_file:
-            # json.dump(new_data, data_file, indent = 4)
-            data = json.load(data_file)
-            print(data)
+        try:
+            with open(r"day_29\data.json", "r") as data_file:
+                # Reading old data
+                data = json.load(data_file)
+        # Error handling
+        except FileNotFoundError:
+            with open(r"day_29\data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent = 4)
+            
+        else:
+            # Updating old data with the new data
+            data.update(new_data)
+                
+            with open(r"day_29\data.json", "w") as data_file:
+                # Saving updated data
+                json.dump(data, data_file, indent = 4)
+        
+        finally:        
             web_entry.delete(0, tk.END)
             password_entry.delete(0, tk.END)
     
