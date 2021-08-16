@@ -75,6 +75,20 @@ def save_data():
             password_entry.delete(0, tk.END)
     
 
+# ---------------------------- SEARCH PASSWORD ------------------------------- #
+
+
+def find_password():
+    website = web_entry.get()
+    with open(r"day_29\data.json", "r") as data_file:
+        # Reading old data
+        data = json.load(data_file)
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title = website, message= f" Email: {email} \n Password: {password}")
+            
+    
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -100,12 +114,12 @@ password = tk.Label(text = "Password: ")
 password.grid(column= 0, row = 3)
 
 #Entries
-web_entry = tk.Entry(width=35)
+web_entry = tk.Entry(width=21)
 #Add some text to begin with
 web_entry.insert(0, string="" )
 #Gets text in web_entry
 print(web_entry.get())
-web_entry.grid(column=1, row=1, columnspan=2)
+web_entry.grid(column=1, row=1,)
 web_entry.focus()
 
 email_entry = tk.Entry(width=35)
@@ -124,17 +138,17 @@ password_entry.grid(column=1, row=3)
 
 
 
-#calls action() when pressed
+# Generate passowrd button
 password_button = tk.Button(text="Generate Password", command = generate_password)
 password_button.grid(column=2, row=3)
 
-
-
-
-#calls action() when pressed
+# Add button
 add_button = tk.Button(text="Add", command = save_data, width=36)
 add_button.grid(column=1, row=4, columnspan=2)
 
+# Search button
+search_button = tk.Button(text = "Search",width = 14, command= find_password)
+search_button.grid(column=2, row = 1)
 
 
 
