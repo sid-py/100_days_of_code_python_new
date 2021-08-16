@@ -21,3 +21,4 @@ def generate_phonetic():
     else:
         print(output_list)
 
+generate_phonetic()

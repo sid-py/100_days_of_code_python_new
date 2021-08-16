@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -41,17 +42,22 @@ def save_data():
     website = web_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password,
+        }
+    }
     
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Please make sure you haven'e left any field empty!")
     
-    is_ok = messagebox.askokcancel(title = website, message=f"These are the details entered\n Email: {email}\nPassword:{password}\nIs it OK?")
-    
-    if is_ok:
-        with open(r"day_29\data.txt", "a") as data_file:
-            data_file.write(f"{website} | {email} | {password} \n")
+    else:
+        with open(r"day_29\data.json", "w") as data_file:
+            # json.dump(new_data, data_file, indent = 4)
+            data = json.load(data_file)
+            print(data)
             web_entry.delete(0, tk.END)
-            email_entry.delete(0, tk.END)
             password_entry.delete(0, tk.END)
     
 
@@ -80,7 +86,7 @@ password = tk.Label(text = "Password: ")
 password.grid(column= 0, row = 3)
 
 #Entries
-web_entry = tk.Entry(width=35, fg="grey")
+web_entry = tk.Entry(width=35)
 #Add some text to begin with
 web_entry.insert(0, string="" )
 #Gets text in web_entry
@@ -88,14 +94,14 @@ print(web_entry.get())
 web_entry.grid(column=1, row=1, columnspan=2)
 web_entry.focus()
 
-email_entry = tk.Entry(width=35, fg = "grey")
+email_entry = tk.Entry(width=35)
 #Add some text to begin with
-email_entry.insert(0, string="")
+email_entry.insert(0, string="siddhesh.sule47@gmail.com")
 #Gets text in email_entry
 print(email_entry.get())
 email_entry.grid(column=1, row=2, columnspan=2)
 
-password_entry = tk.Entry(width=21, fg = "grey")
+password_entry = tk.Entry(width=21)
 #Add some text to begin with
 password_entry.insert(0, string="")
 #Gets text in password_entry
