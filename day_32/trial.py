@@ -33,9 +33,9 @@ year = now.year
 month = now.month
 day = now.day
 dst = now.dst
+week_day = now.weekday()
 hour = now.hour
-
 dob = dt.datetime(year=1986, month=4, day=30)
-print(dob)
+print(week_day)
 
-print(now, year, month, day, dst, hour)
+# print(now, year, month, day, dst, hour)
