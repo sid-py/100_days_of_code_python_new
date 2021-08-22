@@ -32,10 +32,11 @@ now = dt.datetime.now()
 year = now.year
 month = now.month
 day = now.day
-dst = now.dst
+# dst = now.dst
 week_day = now.weekday()
 hour = now.hour
+time = now.time()
 dob = dt.datetime(year=1986, month=4, day=30)
-print(week_day)
+print(time)
 
 # print(now, year, month, day, dst, hour)
