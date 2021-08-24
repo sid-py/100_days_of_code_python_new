@@ -1,4 +1,3 @@
-from os import stat
 import tkinter as tk
 from typing import Text
 from quiz_brain import QuizBrain
