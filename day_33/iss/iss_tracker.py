@@ -1,7 +1,7 @@
-from typing import MutableMapping
 import requests
 from datetime import datetime
 import smtplib
+import time
 
 MY_EMAIL = "progc515@gmail.com"
 MY_PASS = "pyThon1986$$"
@@ -10,17 +10,14 @@ MY_PASS = "pyThon1986$$"
 MY_LAT = 51.507351 # Your latitude
 MY_LONG = -0.127758 # Your longitude
 
-response = requests.get(url="http://api.open-notify.org/iss-now.json")
-response.raise_for_status()
-data = response.json()
-
-iss_latitude = float(data["iss_position"]["latitude"])
-iss_longitude = float(data["iss_position"]["longitude"])
-
 #Your position is within +5 or -5 degrees of the ISS position.
-
-
 def is_iss_overhead():
+    response = requests.get(url="http://api.open-notify.org/iss-now.json")
+    response.raise_for_status()
+    data = response.json()
+
+    iss_latitude = float(data["iss_position"]["latitude"])
+    iss_longitude = float(data["iss_position"]["longitude"])
     #If the ISS is close to my current position
     if MY_LAT-5 <= iss_latitude <=MY_LAT+5 and MY_LONG-5 <= iss_longitude <= MY_LONG+5:
         return True
@@ -42,11 +39,14 @@ def is_night():
     # and it is currently dark
   
 # Then send me an email to tell me to look up.
-with smtplib.SMTP("smtp.gmail.com") as connection:
-        connection.starttls()
-        connection.login(user = MY_EMAIL, password = MY_PASS)
-        connection.sendmail(from_addr = MY_EMAIL, to_addrs = "siddhesh.sule47@gmail.com", msg = "Look up! You will see an ISS up there!" )
-            
+while True:
+    time.sleep(60)
+    if is_iss_overhead() and is_night():
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+                connection.starttls()
+                connection.login(user = MY_EMAIL, password = MY_PASS)
+                connection.sendmail(from_addr = MY_EMAIL, to_addrs = "siddhesh.sule47@gmail.com", msg = "Subject:Look up!\n\nYou will see an ISS up there!" )
+                
 # BONUS: run the code every 60 seconds.
 
 
