@@ -1,6 +1,7 @@
 import requests
 import smtplib
 from newsapi import NewsApiClient
+import datetime as dt
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
