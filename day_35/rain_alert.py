@@ -1,5 +1,4 @@
 import requests
-import requests
 import smtplib
 
 api_key = "39694ab1cb0d435fd52fef3d79091bb2"
