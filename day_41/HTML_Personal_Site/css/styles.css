@@ -1,0 +1,22 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: bisque;
+}
+
+hr{
+    background-color: white;
+    border-style: dotted none none;
+    border-color: grey;
+    border-width: 4px; 
+               
+    width: 5%;
+}
+
+h1{
+    color: #297F87;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h2{
+    color: #297F87;
+}
