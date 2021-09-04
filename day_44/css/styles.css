@@ -13,8 +13,12 @@ h1{
 
 .middle-container {
     background-color: blue;
+    width: 200px;
+    height: 200px;
 }
 
 .bottom-container {
     background-color: yellow;
+    width: 200px;
+    height: 200px;
 }
