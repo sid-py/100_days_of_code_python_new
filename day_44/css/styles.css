@@ -16,35 +16,12 @@ h1{
     position: relative;
     padding-top: 100px;
 }
-
-.blue {
-    background-color: blue;
-    width: 200px;
-    height: 200px;
-    display: inline-block;
-    
-    
+.middle-container {
+    background-color: white;
+    position: relative;
+    padding-top: 100px;
 }
 
-.yellow {
-    background-color: yellow;
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 200px;
-    top: 700px
-}
-}
-.red {
-    background-color: red;
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 600px;
-    top: 900px
-}
 
 .pro{
     text-decoration: underline;
@@ -62,4 +39,26 @@ h1{
     top: 50px;
     
 
+}
+
+.profile-pic{
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+    image-rendering: crisp-edges;
+}
+
+.leader{
+    max-width: 10%;
+    height: auto;
+}
+
+.programming{
+    max-width: 10%;
+    height: auto;
+}
+
+.car{
+    max-width: 10%;
+    height: auto;
 }
