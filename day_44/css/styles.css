@@ -3,12 +3,18 @@ body{
     text-align: center;
     font-family: 'Montserrat Alternates', sans-serif;
     
+    
 }
 
 h1{
+    font-size: 90px;
     margin-top: 0;
     font-family: 'Sacramento', cursive;
-    font-size: 60px;
+    
+}
+
+h2{
+    font-family:'Montserrat Alternates', sans-serif ;
 }
 
 .tag{
