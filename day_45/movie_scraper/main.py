@@ -8,8 +8,8 @@ mov_webpage = response.text
 
 soup = BeautifulSoup(mov_webpage, "html.parser")
 
-# print(soup)
+# print(soup.prettify)
 
-movie_names = soup.find_all(name="h3")
+all_movies = soup.find_all(name="h3", class_="jsx-4245974604")
+print(all_movies)
 
-print(movie_names)

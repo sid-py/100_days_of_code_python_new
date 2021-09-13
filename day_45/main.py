@@ -25,4 +25,4 @@ for vote_line in article_upvote:
     vote = votes.split()
     vote_count = int(vote[0])
     print(vote_count)
-
+ 
