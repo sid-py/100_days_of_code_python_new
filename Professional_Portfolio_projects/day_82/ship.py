@@ -1,16 +1,14 @@
 from turtle import Turtle
-import turtle
 
-
-class Ship(turtle):
+class Ship(Turtle):
 
     def __init__(self, position):
         super().__init__()
-        self.shape("triangle")
+        self.shape("spaceship2.gif")
         self.color("green")
         self.penup()
-        self.goto(position)
-        
+        self.goto(0,-230)
+             
         
     def go_right(self):
         new_x = self.xcor() + 30
