@@ -15,21 +15,31 @@
 
 # import tkinter as tk
 from turtle import Turtle, Screen
-import ship
+from ship import Ship
+from bullet import Bullet
 
 # -----------------UI INterface-------------------#
 SPACE_SHIP_LOC = r"C:\Users\2kjph5\OneDrive - Merit Automotive Electronics Systems, S.L\03-Miscellaneous\Studies\Learning\python\100_days_of_code_python_new\Professional_Portfolio_projects\day_82\spaceship2.gif"
+
+SPACE_SHIP_STARTING_POSITION = (0,-230)
+
 
 screen = Screen()
 screen.bgcolor("black")
 screen.title("Shoot 'em Up!")
 screen.setup(width=500, height=500)
+screen.tracer(5)
+space_ship = Ship(SPACE_SHIP_STARTING_POSITION)
 
 
-screen.addshape(SPACE_SHIP_LOC)
+screen.listen()
 
-space_ship = ship.Ship((0,0))
-space_ship.shape(SPACE_SHIP_LOC)
+screen.onkeypress(space_ship.go_left, "Left")
+screen.onkeypress(space_ship.go_right, "Right")
+
+bullet = Bullet(SPACE_SHIP_STARTING_POSITION)
+
+
 
 
 
